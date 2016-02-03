@@ -19,24 +19,28 @@ public class webcam_test extends PApplet {
 
 
 Capture webcam; //declares supposed webcam to use
+PImage techissuesimg;
+boolean floppy;
 
 public void setup() {
 	
-
+	floppy = true;
 	String[] cameras = Capture.list();
 
+	techissuesimg = loadImage("data/techissues.jpg");
 	webcam = new Capture(this, cameras[0]);
 	webcam.start();
 }
 
 public void draw() {
-	if(webcam.available()) {
+	if(webcam.available() && floppy) {
 		webcam.read();
 		image(webcam, 0, 0);
 		PImage img = webcam.get();
+		img.save("data/example.jpg");
+		floppy = !floppy;
 	}
-
-	image(webcam, 0, 0);
+	image(techissuesimg, 0, 0, width, height);
 
 }
   public void settings() { 	size(640, 480); }

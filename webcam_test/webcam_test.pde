@@ -21,6 +21,7 @@ void draw() {
 		PImage img = webcam.get();
 		img.save("data/example.jpg");
 		floppy = !floppy;
+		webcam.stop();
 	}
 	image(techissuesimg, 0, 0, width, height);
 
